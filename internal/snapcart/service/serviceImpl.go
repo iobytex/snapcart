@@ -36,7 +36,7 @@ func (serviceI *serviceImpl)  AddMessage(ctx context.Context,messageRequest mode
 }
 
 
-func (serviceI *serviceImpl)  Messages(ctx context.Context,id int) (*[]model.Message,error){
+func (serviceI *serviceImpl)  Messages(ctx context.Context,id uint) (*[]model.Message,error){
 	messages, err := serviceI.repo.Messages(ctx, id)
 	if err != nil {
 		return nil, err

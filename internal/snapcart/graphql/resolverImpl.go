@@ -1,7 +1,6 @@
 package graphql
 
 import (
-	"fmt"
 	"github.com/graphql-go/graphql"
 	"log"
 	"snapcart/internal/snapcart"
@@ -70,7 +69,8 @@ func (resolver *graphqlResolverImpl) Messages() graphql.FieldResolveFn {
 	return func(p graphql.ResolveParams) (interface{}, error) {
 
 		messagesData := make(chan interface{})
-		go func(id int) {
+
+		go func(id uint) {
 				for {
 					messages, err := resolver.service.Messages(p.Context, id)
 					if err != nil {
@@ -84,7 +84,7 @@ func (resolver *graphqlResolverImpl) Messages() graphql.FieldResolveFn {
 						   default:
 
 							   for _, value := range *messages {
-								  fmt.Println(value)
+								///  fmt.Println(value)
 								  messagesData <- model.ChatResponse{
 									   ID:        value.ID,
 									   Chat:      value.Chat,
@@ -96,10 +96,14 @@ func (resolver *graphqlResolverImpl) Messages() graphql.FieldResolveFn {
 
 					  }
 
+					  if len(*messages) == 0 {
+						  id = (*messages)[len(*messages)-1].ID
+					  }else{
+					  	id = 0
+					  }
 
-				   id = len(*messages)
 		  }
-		}( p.Args["id"].(int))
+		}( uint(p.Args["id"].(int)))
 
 			return messagesData, nil
 

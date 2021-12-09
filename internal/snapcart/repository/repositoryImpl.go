@@ -43,10 +43,11 @@ func (repositoryI *repositoryImpl)  AddMessage(ctx context.Context,messageReques
 }
 
 
-func (repositoryI *repositoryImpl)  Messages(ctx context.Context,id int) (*[]model.Message,error){
+func (repositoryI *repositoryImpl)  Messages(ctx context.Context,id uint) (*[]model.Message,error){
 
 	var messages []model.Message
 
+	fmt.Print(id)
 	if id == 0 {
 		//Get new record
 		if result :=  repositoryI.db.WithContext(ctx).Order("id desc").Limit(1).Find(&messages) ; result.Error != nil {
