@@ -97,7 +97,7 @@ func (resolver *graphqlResolverImpl) Messages() graphql.FieldResolveFn {
 					  }
 
 
-				   id = 0
+				   id = len(*messages)
 		  }
 		}( p.Args["id"].(int))
 
