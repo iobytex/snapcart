@@ -1,0 +1,8 @@
+Postgresql:
+  PostgresqlHost: "ec2-44-198-100-81.compute-1.amazonaws.com"
+  PostgresqlPort: "5432"
+  PostgresqlUser: "lwvlfhdsclikju"
+  PostgresqlPassword: "58c3bbc2ac0bd3cfaecef6138a01d833eb7244034acc054083fcf61dd72e616a"
+  PostgresqlDbname: "db340nrh23scv5"
+  PostgresqlSslMode: "require"
+  PgDriver: "pgx"
