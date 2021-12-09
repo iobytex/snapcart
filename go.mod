@@ -1,7 +1,7 @@
 module snapcart
 
 // +heroku goVersion go1.17
-// +heroku install ./cmd/
+// +heroku install
 go 1.16
 
 require (
