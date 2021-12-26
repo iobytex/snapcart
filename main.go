@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"snapcart/config"
 	"snapcart/model"
 	"snapcart/pkg/postgres"
@@ -20,13 +21,13 @@ func main() {
 
 	migrateErr := initDBConnection.AutoMigrate(&model.Message{})
 	if migrateErr != nil {
-		panic(migrateErr)
+		log.Print(migrateErr)
 	}
 
 
 	s := server.NewServer(initDBConnection)
 	sErr := s.Run()
 	if sErr != nil {
-		panic(sErr)
+		log.Print(sErr)
 	}
 }
