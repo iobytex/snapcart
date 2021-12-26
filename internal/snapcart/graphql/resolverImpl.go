@@ -70,7 +70,14 @@ func (resolver *graphqlResolverImpl) Messages() graphql.FieldResolveFn {
 
 		messagesData := make(chan interface{})
 
+
 		go func(id uint) {
+				defer func() {
+					if err := recover() ; err != nil {
+						log.Print("Subscription error:",err)
+					}
+				}()
+
 				for {
 					messages, err := resolver.service.Messages(p.Context, id)
 					if err != nil {
