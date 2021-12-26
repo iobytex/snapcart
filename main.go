@@ -16,7 +16,7 @@ func main() {
 	}
 	initDBConnection, err := postgres.InitDBConnection(getConfig)
 	if err != nil {
-		panic(err)
+		log.Print(err)
 	}
 
 	migrateErr := initDBConnection.AutoMigrate(&model.Message{})
